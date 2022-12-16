@@ -1,10 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
+import Navbar1 from './Components/navbar';
 
 const App = () => {
   return(
     <>
-      <div>Hello</div>
+      <Navbar1 />
     </>
   )
 }
