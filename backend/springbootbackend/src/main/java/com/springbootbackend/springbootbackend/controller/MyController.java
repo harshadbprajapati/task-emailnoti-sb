@@ -20,7 +20,7 @@ import com.springbootbackend.springbootbackend.exceptions.EmailNotValid;
 import com.springbootbackend.springbootbackend.service.StudentService;
 
 @RestController
-@CrossOrigin("http://localhost:8080")
+@CrossOrigin("http://localhost:3000")
 public class MyController {
 	
 	@Autowired
