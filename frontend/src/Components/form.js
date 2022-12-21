@@ -23,7 +23,7 @@ const Displayform =()=>{
     }
 
     const studentRegistered=(data)=>{
-        axios.post(`${baseurl}/`,data).then(
+        axios.post(`${baseurl}/studentdetails`,data).then(
             (response)=>{
                 console.log(response)
             },
@@ -43,27 +43,30 @@ const Displayform =()=>{
                     <div class="content_box">
                         <form onSubmit={handleForm}>
                         <p>
-                            Name: <br />
-                            <input type="text" name="Name" id="Name" placeholder="Type your full name here" required onChange={(e)=>{
-                                setStudent({...student,student_name:e.target.value})
-                            }}/>
-                        </p>
-                        <p>
-                            Email: <br />
-                            <input type="email" placeholder="Type your email here" required onChange={(e)=>{
-                                setStudent({...student,student_email:e.target.value})
+                            ID: <br />
+                            <input type="text" name="text" id="Address" placeholder="Type your ID here" required onChange={(e)=>{
+                                setStudent({...student,studentId:e.target.value})
                             }}/>
                         </p>
                         <p>
                             Contact No.: <br />
                             <input type="tel" name="mobile" id="mobile" placeholder="Contact No." required onChange={(e)=>{
-                                setStudent({...student,student_contact_number:e.target.value})
+                                setStudent({...student,studentContactNumber:e.target.value})
                             }}/>
                         </p>
                         <p>
-                            ID: <br />
-                            <input type="text" name="text" id="Address" placeholder="Type your ID here" required onChange={(e)=>{
-                                setStudent({...student,student_email:e.target.value})
+                            Name: <br />
+                            <input type="text" name="Name" id="Name" placeholder="Type your full name here" required onChange={(e)=>{
+                                setStudent({...student,studentName:e.target.value})
+                            }}/>
+                        </p>
+                        
+                        
+                        
+                        <p>
+                            Email: <br />
+                            <input type="email" placeholder="Type your email here" required onChange={(e)=>{
+                                setStudent({...student,studentEmail:e.target.value})
                             }}/>
                         </p>
                             <input type="submit" value="Done" />
