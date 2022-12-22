@@ -3,7 +3,8 @@ import {useEffect,useState } from "react";
 import './form.css';
 import baseurl from "../api/bootapi";
 import axios from "axios";
-
+// import {toast} from "react-toastify";
+// import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -26,9 +27,11 @@ const Displayform =()=>{
         axios.post(`${baseurl}/studentdetails`,data).then(
             (response)=>{
                 console.log(response)
+                // toast.success("Registered Successfully!!");
             },
             (error)=>{
                 console.log(error);
+                // toast.error("Registration Failed!!");
             }
         )
     }
