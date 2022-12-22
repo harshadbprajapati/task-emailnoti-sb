@@ -43,7 +43,7 @@ public class EmailSenderService {
         MimeMessageHelper mimeMessageHelper
                 = new MimeMessageHelper(mimeMessage, true);
 
-        mimeMessageHelper.setFrom("manushidagli2512@gmail.com");
+        mimeMessageHelper.setFrom("emailservicesdp@gmail.com");
         mimeMessageHelper.setTo(toEmail);
         mimeMessageHelper.setText(body);
         mimeMessageHelper.setSubject(subject);
