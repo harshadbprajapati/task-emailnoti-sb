@@ -3,15 +3,13 @@ import {useEffect,useState } from "react";
 import './form.css';
 import baseurl from "../api/bootapi";
 import axios from "axios";
-// import {toast} from "react-toastify";
-// import 'react-toastify/dist/ReactToastify.css';
+import {ToastContainer,toast} from 'react-toastify';
 
 
 
 const Displayform =()=>{
 
     useEffect(()=>{
-        
         console.log("hello")
     }, []);
 
@@ -24,16 +22,14 @@ const Displayform =()=>{
     }
 
     const studentRegistered=(data)=>{
-        axios.post(`${baseurl}/studentdetails`,data).then(
-            (response)=>{
-                console.log(response)
-                // toast.success("Registered Successfully!!");
-            },
-            (error)=>{
-                console.log(error);
-                // toast.error("Registration Failed!!");
+        axios.post(`${baseurl}/studentdetails`,data).then((response)=>{
+                console.log("Success")
+                toast.success("Registered Successfully!!");
+            },(error)=>{
+                console.log("Error");
+                toast.error("Registration Failed!!");
             }
-        )
+        );
     }
 
         return(
@@ -44,6 +40,7 @@ const Displayform =()=>{
                         <p>Please fill all the texts!</p>
                     </div>
                     <div class="content_box">
+                        <ToastContainer></ToastContainer>
                         <form onSubmit={handleForm}>
                         <p>
                             ID: <br />
@@ -74,6 +71,7 @@ const Displayform =()=>{
                         </p>
                             <input type="submit" value="Done" />
                         </form>
+                        
                     </div>
                 </div>
             </div>
