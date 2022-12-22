@@ -79,11 +79,11 @@ public class StudentServiceimpl implements StudentService {
 	
 	public void triggerMail(String studentMail) throws MessagingException {
 
-//		service.sendEmailWithAttachment("dadhaniameet1744@gmail.com",
-//				"This is the body",
-//				"Email with Attachment",
-//				"C:\\Users\\Hp\\Pictures\\Screenshots\\img.png");
-		service.sendSimpleEmail(studentMail, "https://youtu.be/kyL0m9y1n0A", "CONFIDENTIAL!!");
+		service.sendEmailWithAttachment(studentMail,
+				"You have registered Successfully!",
+				"Email with Attachment",
+				"C:\\Users\\Meet\\Downloads\\earth.gif");
+//		service.sendSimpleEmail(studentMail, "You have registered Successfully!", "Registration Completed");
 
 	}
 	
