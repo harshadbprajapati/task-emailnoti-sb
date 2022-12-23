@@ -22,6 +22,15 @@ const Displayform =()=>{
     }
 
     const studentRegistered=(data)=>{
+        // const functionThatReturnPromise = ()=>{axios.post(`${baseurl}/studentdetails`,data)};
+        // toast.promise(
+        // functionThatReturnPromise,
+        // {
+        //     pending: 'Promise is pending',
+        //     success: 'Promise resolved 👌',
+        //     error: 'Promise rejected 🤯'
+        // }
+// )
         axios.post(`${baseurl}/studentdetails`,data).then((response)=>{
                 console.log("Success")
                 toast.success("Registered Successfully!!");
@@ -40,7 +49,7 @@ const Displayform =()=>{
                         <p>Please fill all the texts!</p>
                     </div>
                     <div class="content_box">
-                        <ToastContainer></ToastContainer>
+                        <ToastContainer />
                         <form onSubmit={handleForm}>
                         <p>
                             ID: <br />
