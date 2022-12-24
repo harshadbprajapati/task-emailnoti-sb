@@ -7,6 +7,6 @@ import com.springbootbackend.springbootbackend.StudentDetails.StudentDetails;
 
 
 @Repository
-public interface StudentDao extends JpaRepository<StudentDetails, Integer>{
+public interface StudentDao extends JpaRepository<StudentDetails, String>{
 	
 }

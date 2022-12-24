@@ -40,7 +40,7 @@ public class MyController {
 	}
 	
 	@GetMapping("/studentdetails/{studentId}")
-	public Optional<StudentDetails> getStudent(@PathVariable int studentId) {
+	public Optional<StudentDetails> getStudent(@PathVariable String studentId) {
 		return this.studentService.getStudent(studentId);
 		
 	}
@@ -62,7 +62,7 @@ public class MyController {
 	@DeleteMapping("/studentdetails/{studentId}")
 	public ResponseEntity<HttpStatus> deleteStudent(@PathVariable String studentId){
 		try {
-			this.studentService.deleteStudent(Integer.parseInt(studentId));
+			this.studentService.deleteStudent(studentId);
 			return new ResponseEntity<>(HttpStatus.OK);
 		}
 		catch(Exception e) {

@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import com.springbootbackend.springbootbackend.StudentDetails.StudentDetails;
@@ -19,9 +22,12 @@ public class StudentServiceimpl implements StudentService {
 
 	@Autowired
 	private StudentDao studentDao;
-	
 	@Autowired
 	private EmailSenderService service;
+	@Autowired
+	private KafkaTemplate<String, StudentDetails> kafkaTemplate;
+	@Value("${kafka.topic}")
+	private String topic;
 	
 	@Override
 	public List<StudentDetails> getAllStudentDetails() {
@@ -31,12 +37,13 @@ public class StudentServiceimpl implements StudentService {
 	}
 
 	@Override
-	public Optional<StudentDetails> getStudent(int studentId) {
+	public Optional<StudentDetails> getStudent(String studentId) {
 		// TODO Auto-generated method stub
 		return studentDao.findById(studentId);
 	}
 
 	@Override
+	@KafkaListener(topics = "${kafka.topic}")
 	public StudentDetails addStudent(StudentDetails student) throws EmailNotValid{
 		// TODO Auto-generated method stub
 		String studentMail=new String(student.getStudentEmail());
@@ -71,7 +78,7 @@ public class StudentServiceimpl implements StudentService {
 
 
 	@Override
-	public void deleteStudent(int parseInt) {
+	public void deleteStudent(String parseInt) {
 		// TODO Auto-generated method stub
 		StudentDetails toDelete=studentDao.getReferenceById(parseInt);
 		studentDao.delete(toDelete);
@@ -85,7 +92,9 @@ public class StudentServiceimpl implements StudentService {
 //				"./hello-world.gif");
 		service.sendSimpleEmail(studentMail, "You have registered Successfully!", "Registration Completed");
 	}
-	
+	public void registerStudent(StudentDetails student) {
+		kafkaTemplate.send(topic, student.getStudentId(), student);
+	}
 	public boolean emailValidation(String studentMail) throws EmailNotValid{   
 	        String regex = "^(.+)@(.+)$"; 
 	        Pattern pattern = Pattern.compile(regex);  
@@ -95,7 +104,7 @@ public class StudentServiceimpl implements StudentService {
 	        }
 	        return false;
 	}  
-	    
+
 }
 
 
