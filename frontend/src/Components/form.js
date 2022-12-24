@@ -22,23 +22,40 @@ const Displayform =()=>{
     }
 
     const studentRegistered=(data)=>{
-        // const functionThatReturnPromise = ()=>{axios.post(`${baseurl}/studentdetails`,data)};
-        // toast.promise(
-        // functionThatReturnPromise,
-        // {
-        //     pending: 'Promise is pending',
-        //     success: 'Promise resolved 👌',
-        //     error: 'Promise rejected 🤯'
-        // }
-// )
-        axios.post(`${baseurl}/studentdetails`,data).then((response)=>{
-                console.log("Success")
-                toast.success("Registered Successfully!!");
-            },(error)=>{
-                console.log("Error");
-                toast.error("Registration Failed!!");
-            }
-        );
+const resolveWithSomeData = axios.post(`${baseurl}/studentdetails`,data);
+toast.promise(
+    resolveWithSomeData,
+    {
+      pending: {
+        render(){
+          return "Please Wait!!"
+        },
+        icon: "✋",
+      },
+      success: {
+        render({data}){
+          return `Registered Successfully!!`
+        },
+        // other options
+        icon: "🚀",
+      },
+      error: {
+        render({data}){
+          // When the promise reject, data will contains the error
+          return `Registration Failed!!`
+        },
+        icon:"💥",
+      }
+    }
+)
+        // axios.post(`${baseurl}/studentdetails`,data).then((response)=>{
+        //         console.log("Success")
+        //         toast.success("Registered Successfully!!");
+        //     },(error)=>{
+        //         console.log("Error");
+        //         toast.error("Registration Failed!!");
+        //     }
+        // );
     }
 
         return(
