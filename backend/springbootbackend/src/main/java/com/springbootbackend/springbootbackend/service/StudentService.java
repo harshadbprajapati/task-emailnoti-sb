@@ -9,15 +9,12 @@ import com.springbootbackend.springbootbackend.exceptions.EmailNotValid;
 public interface StudentService {
 	public List<StudentDetails> getAllStudentDetails();
 
-	public Optional<StudentDetails> getStudent(String studentId);
+	public Optional<StudentDetails> getStudent(int studentId);
 
-	public StudentDetails addStudent(StudentDetails student) throws EmailNotValid;
+	public StudentDetails addStudent(StudentDetails student);
 
 	public StudentDetails updateStudent(StudentDetails student);
 
-	public void deleteStudent(String parseInt);
+	public void deleteStudent(int parseInt);
 
-
-
-	
 }

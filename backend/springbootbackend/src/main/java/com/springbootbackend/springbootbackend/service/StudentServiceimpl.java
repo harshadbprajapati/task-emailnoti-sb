@@ -22,10 +22,13 @@ public class StudentServiceimpl implements StudentService {
 
 	@Autowired
 	private StudentDao studentDao;
+
 	@Autowired
 	private EmailSenderService service;
+
 	@Autowired
 	private KafkaTemplate<String, StudentDetails> kafkaTemplate;
+
 	@Value("${kafka.topic}")
 	private String topic;
 	
@@ -37,31 +40,20 @@ public class StudentServiceimpl implements StudentService {
 	}
 
 	@Override
-	public Optional<StudentDetails> getStudent(String studentId) {
+	public Optional<StudentDetails> getStudent(int studentId) {
 		// TODO Auto-generated method stub
 		return studentDao.findById(studentId);
 	}
 
 	@Override
 	@KafkaListener(topics = "${kafka.topic}")
-	public StudentDetails addStudent(StudentDetails student) throws EmailNotValid{
+	public StudentDetails addStudent(StudentDetails student){
 		// TODO Auto-generated method stub
 		String studentMail=new String(student.getStudentEmail());
-		try {
-			if(emailValidation(studentMail)) {
-				studentDao.save(student);
-				triggerMail(studentMail);
-				System.out.println("Entry successfull");
-			}
-			else {
-				throw new EmailNotValid("Entered Email-Id is not valid!");
-			}
-			
-		} catch (MessagingException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Email Not Sent");
-			e.printStackTrace();
-		}
+		studentDao.save(student);
+//		triggerMail(studentMail);
+//		kafkaTemplate.send(topic, String.valueOf(student.getStudentId()), student);
+		System.out.println("Entry successfull");
 		return null;
 		
 	}
@@ -72,13 +64,13 @@ public class StudentServiceimpl implements StudentService {
 		
 		StudentDetails newStudent=new StudentDetails(student.getStudentId(),student.getStudentName(),student.getStudentContactNumber(), student.getStudentEmail());
 		
-		 return studentDao.save(newStudent);
+		return studentDao.save(newStudent);
 	}
 
 
 
 	@Override
-	public void deleteStudent(String parseInt) {
+	public void deleteStudent(int parseInt) {
 		// TODO Auto-generated method stub
 		StudentDetails toDelete=studentDao.getReferenceById(parseInt);
 		studentDao.delete(toDelete);
@@ -92,9 +84,9 @@ public class StudentServiceimpl implements StudentService {
 //				"./hello-world.gif");
 		service.sendSimpleEmail(studentMail, "You have registered Successfully!", "Registration Completed");
 	}
-	public void registerStudent(StudentDetails student) {
-		kafkaTemplate.send(topic, student.getStudentId(), student);
-	}
+//	public void registerStudent(StudentDetails student) {
+//		kafkaTemplate.send(topic, student.getStudentId(), student);
+//	}
 	public boolean emailValidation(String studentMail) throws EmailNotValid{   
 	        String regex = "^(.+)@(.+)$"; 
 	        Pattern pattern = Pattern.compile(regex);  

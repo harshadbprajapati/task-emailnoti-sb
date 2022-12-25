@@ -10,7 +10,7 @@ public class StudentDetails {
 		// TODO Auto-generated method stub
 	    @Id
 	    @Column(name="student_id")
-		private String studentId;
+		private int studentId;
 	    
 	    public StudentDetails() {
 			super();
@@ -25,11 +25,11 @@ public class StudentDetails {
 	    @Column(name="student_email")
 		private String studentEmail;
 
-		public String getStudentId() {
+		public int getStudentId() {
 			return studentId;
 		}
 
-		public void setStudentId(String studentId) {
+		public void setStudentId(int studentId) {
 			this.studentId = studentId;
 		}
 
@@ -57,7 +57,7 @@ public class StudentDetails {
 			this.studentEmail = studentEmail;
 		}
 
-		public StudentDetails(String studentId, String studentName, long studentContactNumber, String studentEmail) {
+		public StudentDetails(int studentId, String studentName, long studentContactNumber, String studentEmail) {
 			super();
 			this.studentId = studentId;
 			this.studentName = studentName;
