@@ -1,4 +1,4 @@
-package com.springbootbackend.springbootbackend.KafkaConfigure;
+package com.springbootbackend.springbootbackend.Config;
 
 import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,7 +12,9 @@ public class TopicConfig {
     private String topicName;
 
     @Bean
-    public NewTopic kafkaTopic(){
-        return TopicBuilder.name(topicName).build();
+    public NewTopic javaguidesTopic(){
+        return TopicBuilder.name(topicName)
+                .build();
     }
+
 }

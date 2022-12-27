@@ -1,4 +1,4 @@
-package com.springbootbackend.springbootbackend.KafkaConfigure;
+package com.springbootbackend.springbootbackend.Config;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class KafkaConsumerConfig {
+
     @Value("${spring.kafka.topic.name}")
     private String kafkaService;
 
@@ -36,5 +37,4 @@ public class KafkaConsumerConfig {
         factory.setConsumerFactory(consumerFactory);
         return factory;
     }
-
 }

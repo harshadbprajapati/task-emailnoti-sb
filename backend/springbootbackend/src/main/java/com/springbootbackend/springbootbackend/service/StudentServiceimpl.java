@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ import com.springbootbackend.springbootbackend.exceptions.EmailNotValid;
 
 import jakarta.mail.MessagingException;
 import java.util.regex.*;  
-@Service
+@Service("studentServiceimpl")
 public class StudentServiceimpl implements StudentService {
 
 	@Autowired
@@ -26,12 +27,6 @@ public class StudentServiceimpl implements StudentService {
 	@Autowired
 	private EmailSenderService service;
 
-	@Autowired
-	private KafkaTemplate<String, StudentDetails> kafkaTemplate;
-
-	@Value("${kafka.topic}")
-	private String topic;
-	
 	@Override
 	public List<StudentDetails> getAllStudentDetails() {
 		// TODO Auto-generated method stub
@@ -46,16 +41,14 @@ public class StudentServiceimpl implements StudentService {
 	}
 
 	@Override
-	@KafkaListener(topics = "${kafka.topic}")
-	public StudentDetails addStudent(StudentDetails student){
+	@KafkaListener(topics = "student-registration")
+	public StudentDetails addStudent(StudentDetails student) throws MessagingException {
 		// TODO Auto-generated method stub
-		String studentMail=new String(student.getStudentEmail());
+		String studentMail=student.getStudentEmail();
 		studentDao.save(student);
-//		triggerMail(studentMail);
-//		kafkaTemplate.send(topic, String.valueOf(student.getStudentId()), student);
-		System.out.println("Entry successfull");
+		triggerMail(studentMail);
+		System.out.println("Entry Successfull");
 		return null;
-		
 	}
 
 	@Override
@@ -84,9 +77,6 @@ public class StudentServiceimpl implements StudentService {
 //				"./hello-world.gif");
 		service.sendSimpleEmail(studentMail, "You have registered Successfully!", "Registration Completed");
 	}
-//	public void registerStudent(StudentDetails student) {
-//		kafkaTemplate.send(topic, student.getStudentId(), student);
-//	}
 	public boolean emailValidation(String studentMail) throws EmailNotValid{   
 	        String regex = "^(.+)@(.+)$"; 
 	        Pattern pattern = Pattern.compile(regex);  

@@ -3,7 +3,9 @@ package com.springbootbackend.springbootbackend.controller;
 import java.util.List;
 import java.util.Optional;
 
+import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,8 +24,9 @@ import com.springbootbackend.springbootbackend.service.StudentService;
 @RestController
 @CrossOrigin("http://localhost:3000")
 public class MyController {
-	
+
 	@Autowired
+	@Qualifier("studentServiceimpl")
 	private StudentService studentService;
 	
 	@GetMapping("/home")
@@ -48,7 +51,7 @@ public class MyController {
 	
 
 	@PostMapping("/studentdetails")
-	public ResponseEntity<StudentDetails> addStudent(@RequestBody StudentDetails student) throws EmailNotValid{
+	public ResponseEntity<StudentDetails> addStudent(@RequestBody StudentDetails student) throws MessagingException {
 		return new ResponseEntity<StudentDetails>(studentService.addStudent(student),HttpStatus.CREATED);
 	}
 	
