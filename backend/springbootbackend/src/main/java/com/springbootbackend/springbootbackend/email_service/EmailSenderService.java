@@ -51,9 +51,9 @@ public class EmailSenderService {
 
         mimeMessageHelper.addAttachment(fileSystem.getFilename(),
                 fileSystem);
-
+        mimeMessage.setContent("","text/html; charset=utf-8");
         mailSender.send(mimeMessage);
         System.out.println("Mail Sent...");
-
+        
     }
 }

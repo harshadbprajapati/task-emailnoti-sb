@@ -12,7 +12,7 @@ public class TopicConfig {
     private String topicName;
 
     @Bean
-    public NewTopic javaguidesTopic(){
+    public NewTopic MyTopic(){
         return TopicBuilder.name(topicName)
                 .build();
     }
