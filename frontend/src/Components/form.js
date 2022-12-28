@@ -42,7 +42,7 @@ toast.promise(
       error: {
         render({data}){
           // When the promise reject, data will contains the error
-          if(data==="Email is already in use")
+          if(data.message==="Request failed with status code 500")
             return `Email already exist!!`
           return `Registration Failed!!`
         },

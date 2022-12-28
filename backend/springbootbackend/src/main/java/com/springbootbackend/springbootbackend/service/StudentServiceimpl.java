@@ -44,13 +44,13 @@ public class StudentServiceimpl implements StudentService {
 	@Override
 	@KafkaListener(topics = "student-registration")
 	public StudentDetails addStudent(StudentDetails student) throws EmailAlreadyRegistered {
-		String studentMail=new String(student.getStudentEmail());
+		String studentMail=student.getStudentEmail();
 		try {
 				studentDao.save(student);
 				triggerMail(studentMail);
 				System.out.println("Entry successfull");
 			
-		} 
+		}
 		catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			System.out.println("Email Not Sent");
