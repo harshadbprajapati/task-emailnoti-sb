@@ -42,6 +42,8 @@ toast.promise(
       error: {
         render({data}){
           // When the promise reject, data will contains the error
+          if(data==="Email is already in use")
+            return `Email already exist!!`
           return `Registration Failed!!`
         },
         icon:"💥",

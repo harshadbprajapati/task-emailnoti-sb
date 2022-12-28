@@ -54,6 +54,6 @@ public class EmailSenderService {
         mimeMessage.setContent("","text/html; charset=utf-8");
         mailSender.send(mimeMessage);
         System.out.println("Mail Sent...");
-        
+
     }
 }
