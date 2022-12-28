@@ -3,8 +3,13 @@ package com.springbootbackend.springbootbackend.StudentDetails;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
+@Table(name = "student_details", uniqueConstraints = {
+		@UniqueConstraint(columnNames = { "student_email" })
+})
 public class StudentDetails {
 	
 		// TODO Auto-generated method stub
