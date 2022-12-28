@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springbootbackend.springbootbackend.StudentDetails.StudentDetails;
-import com.springbootbackend.springbootbackend.exceptions.EmailNotValid;
+import com.springbootbackend.springbootbackend.exceptions.EmailAlreadyRegistered;
 import com.springbootbackend.springbootbackend.service.StudentService;
 
 @RestController
@@ -50,9 +50,19 @@ public class MyController {
 	
 	
 
+
 	@PostMapping("/studentdetails")
-	public ResponseEntity<StudentDetails> addStudent(@RequestBody StudentDetails student) throws MessagingException {
-		return new ResponseEntity<StudentDetails>(studentService.addStudent(student),HttpStatus.CREATED);
+	public ResponseEntity<Object> addStudent(@RequestBody StudentDetails student) throws EmailAlreadyRegistered{
+		if (studentService.emailExists(student.getStudentEmail())) {
+//			Error error = new Error(HttpStatus.NOT_ACCEPTABLE);
+//			return new ResponseEntity<>(error, error.getHttpStatus());
+//			System.out.println("Email is already in use");
+			return new ResponseEntity<>("Email is already in use",HttpStatus.NOT_ACCEPTABLE);
+			//throw new EmailAlreadyRegistered("Email already registered.");
+
+		}
+
+			return new ResponseEntity<>(studentService.addStudent(student),HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/studentdetails")

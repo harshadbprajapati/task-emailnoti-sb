@@ -2,6 +2,7 @@ package com.springbootbackend.springbootbackend.service;
 
 import java.util.List;
 
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Service;
 import com.springbootbackend.springbootbackend.StudentDetails.StudentDetails;
 import com.springbootbackend.springbootbackend.dao.StudentDao;
 import com.springbootbackend.springbootbackend.email_service.EmailSenderService;
-import com.springbootbackend.springbootbackend.exceptions.EmailNotValid;
+import com.springbootbackend.springbootbackend.exceptions.EmailAlreadyRegistered;
 
 import jakarta.mail.MessagingException;
 import java.util.regex.*;  
@@ -42,12 +43,19 @@ public class StudentServiceimpl implements StudentService {
 
 	@Override
 	@KafkaListener(topics = "student-registration")
-	public StudentDetails addStudent(StudentDetails student) throws MessagingException {
-		// TODO Auto-generated method stub
-		String studentMail=student.getStudentEmail();
-		studentDao.save(student);
-		triggerMail(studentMail);
-		System.out.println("Entry Successfull");
+	public StudentDetails addStudent(StudentDetails student) throws EmailAlreadyRegistered {
+		String studentMail=new String(student.getStudentEmail());
+		try {
+				studentDao.save(student);
+				triggerMail(studentMail);
+				System.out.println("Entry successfull");
+			
+		} 
+		catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Email Not Sent");
+			e.printStackTrace();
+		}
 		return null;
 	}
 
@@ -77,15 +85,11 @@ public class StudentServiceimpl implements StudentService {
 //				"./hello-world.gif");
 		service.sendSimpleEmail(studentMail, "You have registered Successfully!", "Registration Completed");
 	}
-	public boolean emailValidation(String studentMail) throws EmailNotValid{   
-	        String regex = "^(.+)@(.+)$"; 
-	        Pattern pattern = Pattern.compile(regex);  
-	        Matcher matcher = pattern.matcher(studentMail);  
-	        if(matcher.matches()) {
-	        	return true;
-	        }
-	        return false;
-	}  
+	
+	@Override
+	public boolean emailExists(String studentEmail) {
+		return studentDao.findByEmail(studentEmail) != null;
+	}
 
 }
 
