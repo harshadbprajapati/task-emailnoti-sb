@@ -19,17 +19,20 @@ public class EmailSenderService {
     @Autowired
     private JavaMailSender mailSender;
 
-    public void sendSimpleEmail(String toEmail,
-                                String body,
-                                String subject) {
-        SimpleMailMessage message = new SimpleMailMessage();
+    public void sendSimpleEmail(String toEmail,String body,String subject){
+        try {
+            SimpleMailMessage message = new SimpleMailMessage();
 
-        message.setTo(toEmail);
-        message.setText(body);
-        message.setSubject(subject);
-
-        mailSender.send(message);
-        System.out.println("Mail Sent...");
+            message.setTo(toEmail);
+            message.setText(body);
+            message.setSubject(subject);
+            System.out.println("Sending Mail...");
+            mailSender.send(message);
+            System.out.println("Mail Sent...");
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
     }
 
     public void sendEmailWithAttachment(String toEmail,
