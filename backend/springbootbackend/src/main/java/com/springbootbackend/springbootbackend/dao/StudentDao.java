@@ -9,10 +9,7 @@ import com.springbootbackend.springbootbackend.StudentDetails.StudentDetails;
 
 
 @Repository
-public interface StudentDao extends JpaRepository<StudentDetails, Integer>{
+public interface StudentDao extends JpaRepository<StudentDetails, String>{
     @Query("SELECT u FROM StudentDetails u WHERE u.studentEmail = :studentEmail")
     StudentDetails findByEmail(@Param("studentEmail") String studentEmail);
-
-    //boolean existsByStudentEmailNot(String studentEmail);
-    //public boolean findByEmail(String studentEmail);
 }

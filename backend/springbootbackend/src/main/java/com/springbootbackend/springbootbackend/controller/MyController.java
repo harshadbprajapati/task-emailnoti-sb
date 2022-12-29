@@ -3,12 +3,10 @@ package com.springbootbackend.springbootbackend.controller;
 import java.util.List;
 import java.util.Optional;
 
-import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +25,6 @@ import com.springbootbackend.springbootbackend.service.StudentService;
 public class MyController {
 
 	@Autowired
-	@Qualifier("studentServiceimpl")
 	private StudentService studentService;
 	
 	@GetMapping("/home")
@@ -41,9 +38,9 @@ public class MyController {
 		
 	}
 	
-	@GetMapping("/studentdetails/{studentId}")
-	public Optional<StudentDetails> getStudent(@PathVariable int studentId) {
-		return this.studentService.getStudent(studentId);
+	@GetMapping("/studentdetails/{studentEmail}")
+	public Optional<StudentDetails> getStudent(@PathVariable String studentEmail) {
+		return this.studentService.getStudent(studentEmail);
 	}
 	
 	
@@ -63,15 +60,13 @@ public class MyController {
 	}
 	
 	
-	@DeleteMapping("/studentdetails/{studentId}")
-	public ResponseEntity<HttpStatus> deleteStudent(@PathVariable int studentId){
+	@DeleteMapping("/studentdetails/{studentEmail}")
+	public ResponseEntity<HttpStatus> deleteStudent(@PathVariable String studentEmail) {
 		try {
-			this.studentService.deleteStudent(studentId);
+			this.studentService.deleteStudent(studentEmail);
 			return new ResponseEntity<>(HttpStatus.OK);
-		}
-		catch(Exception e) {
+		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
 }

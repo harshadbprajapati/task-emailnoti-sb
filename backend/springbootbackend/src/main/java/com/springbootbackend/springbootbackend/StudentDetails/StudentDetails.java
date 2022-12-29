@@ -1,22 +1,16 @@
 package com.springbootbackend.springbootbackend.StudentDetails;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.*;
 
 @Entity
-@Table(name = "student_details", uniqueConstraints = {
-		@UniqueConstraint(columnNames = { "student_email" })
-})
+@Table(name = "student_details")
 public class StudentDetails {
 	
 		// TODO Auto-generated method stub
-	    @Id
-	    @Column(name="student_id")
-		private int studentId;
-	    
+		@Id
+		@Column(name="student_email")
+		private String studentEmail;
+
 	    public StudentDetails() {
 			super();
 			// TODO Auto-generated constructor stub
@@ -26,17 +20,6 @@ public class StudentDetails {
 	    
 	    @Column(name="student_contact_number")
 		private long studentContactNumber;
-	    
-	    @Column(name="student_email")
-		private String studentEmail;
-
-		public int getStudentId() {
-			return studentId;
-		}
-
-		public void setStudentId(int studentId) {
-			this.studentId = studentId;
-		}
 
 		public String getStudentName() {
 			return studentName;
@@ -62,9 +45,8 @@ public class StudentDetails {
 			this.studentEmail = studentEmail;
 		}
 
-		public StudentDetails(int studentId, String studentName, long studentContactNumber, String studentEmail) {
+		public StudentDetails(String studentName, long studentContactNumber, String studentEmail) {
 			super();
-			this.studentId = studentId;
 			this.studentName = studentName;
 			this.studentContactNumber = studentContactNumber;
 			this.studentEmail = studentEmail;

@@ -6,18 +6,17 @@ import java.util.Optional;
 import com.springbootbackend.springbootbackend.StudentDetails.StudentDetails;
 import com.springbootbackend.springbootbackend.exceptions.EmailAlreadyRegistered;
 
-import jakarta.mail.MessagingException;
 
 public interface StudentService {
 	public List<StudentDetails> getAllStudentDetails();
 
-	public Optional<StudentDetails> getStudent(int studentId);
+	public Optional<StudentDetails> getStudent(String studentEmail);
 
 	public StudentDetails addStudent(StudentDetails student) throws EmailAlreadyRegistered;
 
 	public StudentDetails updateStudent(StudentDetails student);
 
-	public void deleteStudent(int parseInt);
+	public void deleteStudent(String studentEmail);
 	boolean emailExists(String studentEmail);
 
 }

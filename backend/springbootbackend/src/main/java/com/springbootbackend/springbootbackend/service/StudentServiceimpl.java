@@ -8,19 +8,11 @@ import java.util.Optional;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.springbootbackend.springbootbackend.Email.EmailRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 import com.springbootbackend.springbootbackend.StudentDetails.StudentDetails;
 import com.springbootbackend.springbootbackend.dao.StudentDao;
-import com.springbootbackend.springbootbackend.email_service.EmailSenderService;
-import com.springbootbackend.springbootbackend.exceptions.EmailAlreadyRegistered;
 
-import jakarta.mail.MessagingException;
-import java.util.regex.*;  
 @Service("studentServiceimpl")
 public class StudentServiceimpl implements StudentService {
 
@@ -29,9 +21,6 @@ public class StudentServiceimpl implements StudentService {
 
 	@Autowired
 	private KafkaProducerService producer;
-
-	@Autowired
-	private EmailSenderService service;
 
 	@Override
 	public StudentDetails addStudent(StudentDetails student){
@@ -51,14 +40,13 @@ public class StudentServiceimpl implements StudentService {
 	@Override
 	public List<StudentDetails> getAllStudentDetails() {
 		// TODO Auto-generated method stub
-		
 		return studentDao.findAll();
 	}
 
 	@Override
-	public Optional<StudentDetails> getStudent(int studentId) {
+	public Optional<StudentDetails> getStudent(String studentEmail) {
 		// TODO Auto-generated method stub
-		return studentDao.findById(studentId);
+		return studentDao.findById(studentEmail);
 	}
 
 
@@ -66,7 +54,7 @@ public class StudentServiceimpl implements StudentService {
 	public StudentDetails updateStudent(StudentDetails student) {
 		// TODO Auto-generated method stub
 		
-		StudentDetails newStudent=new StudentDetails(student.getStudentId(),student.getStudentName(),student.getStudentContactNumber(), student.getStudentEmail());
+		StudentDetails newStudent=new StudentDetails(student.getStudentName(),student.getStudentContactNumber(), student.getStudentEmail());
 		
 		return studentDao.save(newStudent);
 	}
@@ -74,9 +62,9 @@ public class StudentServiceimpl implements StudentService {
 
 
 	@Override
-	public void deleteStudent(int parseInt) {
+	public void deleteStudent(String studentEmail) {
 		// TODO Auto-generated method stub
-		StudentDetails toDelete=studentDao.getReferenceById(parseInt);
+		StudentDetails toDelete=studentDao.getReferenceById(studentEmail);
 		studentDao.delete(toDelete);
 	}
 
@@ -84,7 +72,6 @@ public class StudentServiceimpl implements StudentService {
 	public boolean emailExists(String studentEmail) {
 		return studentDao.findByEmail(studentEmail) != null;
 	}
-
 }
 
 
