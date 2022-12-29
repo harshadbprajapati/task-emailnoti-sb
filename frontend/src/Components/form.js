@@ -41,8 +41,9 @@ toast.promise(
       },
       error: {
         render({data}){
+            console.log(data);
           // When the promise reject, data will contains the error
-          if(data.message==="Request failed with status code 500")
+          if(data.message==="Request failed with status code 500" || data.message==="Request failed with status code 406")
             return `Email already exist!!`
           return `Registration Failed!!`
         },

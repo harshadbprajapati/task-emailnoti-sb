@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,9 +32,7 @@ public class MyController {
 	
 	@GetMapping("/home")
 	public String home() {
-		
 		return "This is home";
-		
 	}
 	
 	@GetMapping("/studentdetails")
@@ -45,7 +44,6 @@ public class MyController {
 	@GetMapping("/studentdetails/{studentId}")
 	public Optional<StudentDetails> getStudent(@PathVariable int studentId) {
 		return this.studentService.getStudent(studentId);
-		
 	}
 	
 	
@@ -54,21 +52,14 @@ public class MyController {
 	@PostMapping("/studentdetails")
 	public ResponseEntity<Object> addStudent(@RequestBody StudentDetails student) throws EmailAlreadyRegistered{
 		if (studentService.emailExists(student.getStudentEmail())) {
-//			Error error = new Error(HttpStatus.NOT_ACCEPTABLE);
-//			return new ResponseEntity<>(error, error.getHttpStatus());
-//			System.out.println("Email is already in use");
 			return new ResponseEntity<>("Email is already in use",HttpStatus.NOT_ACCEPTABLE);
-			//throw new EmailAlreadyRegistered("Email already registered.");
-
 		}
-
-			return new ResponseEntity<>(studentService.addStudent(student),HttpStatus.CREATED);
+		return new ResponseEntity<>(studentService.addStudent(student),HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/studentdetails")
 	public StudentDetails updateStudentDetails(@RequestBody StudentDetails student) {
 		return this.studentService.updateStudent(student);
-		
 	}
 	
 	

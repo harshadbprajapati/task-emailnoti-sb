@@ -5,6 +5,8 @@ import java.util.List;
 
 import java.util.Optional;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.springbootbackend.springbootbackend.Email.EmailRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -26,8 +28,26 @@ public class StudentServiceimpl implements StudentService {
 	private StudentDao studentDao;
 
 	@Autowired
+	private KafkaProducerService producer;
+
+	@Autowired
 	private EmailSenderService service;
 
+	@Override
+	public StudentDetails addStudent(StudentDetails student){
+		try {
+			studentDao.save(student);
+			EmailRequest email=new EmailRequest();
+			email.setSubject("Successful registration!!");
+			email.setTo(student.getStudentEmail());
+			email.setBody(student.getStudentName()+" have registered successfully!!");
+			producer.sendEmailRequest(email);
+			System.out.println("Entry successfull");
+		} catch (JsonProcessingException e) {
+			throw new RuntimeException(e);
+		}
+		return null;
+	}
 	@Override
 	public List<StudentDetails> getAllStudentDetails() {
 		// TODO Auto-generated method stub
@@ -41,23 +61,6 @@ public class StudentServiceimpl implements StudentService {
 		return studentDao.findById(studentId);
 	}
 
-	@Override
-	@KafkaListener(topics = "student-registration")
-	public StudentDetails addStudent(StudentDetails student) throws EmailAlreadyRegistered {
-		String studentMail=student.getStudentEmail();
-		try {
-				studentDao.save(student);
-				triggerMail(studentMail);
-				System.out.println("Entry successfull");
-			
-		}
-		catch (MessagingException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Email Not Sent");
-			e.printStackTrace();
-		}
-		return null;
-	}
 
 	@Override
 	public StudentDetails updateStudent(StudentDetails student) {
@@ -76,16 +79,7 @@ public class StudentServiceimpl implements StudentService {
 		StudentDetails toDelete=studentDao.getReferenceById(parseInt);
 		studentDao.delete(toDelete);
 	}
-	
-	public void triggerMail(String studentMail) throws MessagingException {
 
-//		service.sendEmailWithAttachment(studentMail,
-//				"You have registered Successfully!",
-//				"Email with Attachment",
-//				"./hello-world.gif");
-		service.sendSimpleEmail(studentMail, "You have registered Successfully!", "Registration Completed");
-	}
-	
 	@Override
 	public boolean emailExists(String studentEmail) {
 		return studentDao.findByEmail(studentEmail) != null;
