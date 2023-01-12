@@ -39,6 +39,14 @@ toast.promise(
         // other options
         icon: "🚀",
       },
+      duplicateEmail: {
+        render({data}) {
+          if (data.message === "Email is already in use") {
+            return `Error: Already registered with this email!`;
+          }
+        },
+        icon: "💔",
+      },
       error: {
         render({data}){
             console.log(data);

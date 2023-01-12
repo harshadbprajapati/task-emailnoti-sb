@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="da39b830-53e6-43e7-a05d-4ff9c59d5a43" name="Changes" comment="Kapka in progress">
+      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/backend.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/jpa-buddy.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/.mvn/wrapper/maven-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/src/main/java/com/springbootbackend/springbootbackend/Config/KafkaConsumerConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/src/main/java/com/springbootbackend/springbootbackend/Config/KafkaProducerConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/src/main/java/com/springbootbackend/springbootbackend/Config/TopicConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/src/main/java/com/springbootbackend/springbootbackend/Email/EmailRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/src/main/java/com/springbootbackend/springbootbackend/SpringbootbackendApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/src/main/java/com/springbootbackend/springbootbackend/StudentDetails/StudentDetails.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/src/main/java/com/springbootbackend/springbootbackend/controller/MyController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/src/main/java/com/springbootbackend/springbootbackend/dao/StudentDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/src/main/java/com/springbootbackend/springbootbackend/email_service/EmailSenderService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/src/main/java/com/springbootbackend/springbootbackend/exceptions/EmailAlreadyRegistered.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/src/main/java/com/springbootbackend/springbootbackend/service/KafkaConsumerService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/src/main/java/com/springbootbackend/springbootbackend/service/KafkaProducerService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/src/main/java/com/springbootbackend/springbootbackend/service/StudentService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/src/main/java/com/springbootbackend/springbootbackend/service/StudentServiceimpl.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/src/main/java/com/springbootbackend/springbootbackend/service/hello-world.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/src/test/java/com/springbootbackend/springbootbackend/SpringbootbackendApplicationTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springbootbackend/springbootbackend/Config/KafkaConsumerConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springbootbackend/springbootbackend/Config/KafkaProducerConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springbootbackend/springbootbackend/Config/TopicConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springbootbackend/springbootbackend/Email/EmailRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springbootbackend/springbootbackend/SpringbootbackendApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springbootbackend/springbootbackend/StudentDetails/StudentDetails.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springbootbackend/springbootbackend/controller/MyController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springbootbackend/springbootbackend/dao/StudentDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springbootbackend/springbootbackend/email_service/EmailSenderService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springbootbackend/springbootbackend/exceptions/EmailAlreadyRegistered.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springbootbackend/springbootbackend/service/KafkaConsumerService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springbootbackend/springbootbackend/service/KafkaProducerService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springbootbackend/springbootbackend/service/StudentService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springbootbackend/springbootbackend/service/StudentServiceimpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/springbootbackend/springbootbackend/service/hello-world.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/springbootbackend/springbootbackend/SpringbootbackendApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../frontend/src/Components/form.js" beforeDir="false" afterPath="$PROJECT_DIR$/../../frontend/src/Components/form.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="40dd31e0-7a9e-4ff4-bcef-44f207b06d9e" />
+        <option name="url" value="https://github.com/meet1744/sdp_project.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Use Maven wrapper" />
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="2JEk0RSQw2y4wdPhJMNXL3BGnB2" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/Meet/sdp_project",
+    "spring.configuration.checksum": "f337b1b7ef1cb730f52828332f8304c1"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Meet\sdp_project\backend\springbootbackend\src\main\java\com\springbootbackend\springbootbackend\service" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <module name="springbootbackend" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <module name="springbootbackend" />
+      <option name="filePath" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SpringbootbackendApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="springbootbackend" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.springbootbackend.springbootbackend.SpringbootbackendApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="da39b830-53e6-43e7-a05d-4ff9c59d5a43" name="Changes" comment="" />
+      <created>1671650407601</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1671650407601</updated>
+      <workItem from="1671650408865" duration="2800000" />
+      <workItem from="1671685549551" duration="714000" />
+      <workItem from="1671703008200" duration="62000" />
+      <workItem from="1671707440029" duration="2469000" />
+      <workItem from="1671713911600" duration="668000" />
+      <workItem from="1671724921675" duration="331000" />
+      <workItem from="1671777343536" duration="436000" />
+      <workItem from="1671780017487" duration="1391000" />
+      <workItem from="1671799381090" duration="8482000" />
+      <workItem from="1671851696143" duration="5497000" />
+      <workItem from="1671866607483" duration="6673000" />
+      <workItem from="1671876615956" duration="11713000" />
+      <workItem from="1671940182627" duration="12821000" />
+      <workItem from="1671958872963" duration="8022000" />
+      <workItem from="1671986794970" duration="2536000" />
+      <workItem from="1672058983647" duration="2797000" />
+      <workItem from="1672069662750" duration="9639000" />
+      <workItem from="1672114743439" duration="3137000" />
+      <workItem from="1672141300000" duration="6890000" />
+      <workItem from="1672163395340" duration="53000" />
+      <workItem from="1672166546506" duration="2540000" />
+      <workItem from="1672169696300" duration="297000" />
+      <workItem from="1672170061569" duration="38000" />
+      <workItem from="1672250017963" duration="1085000" />
+      <workItem from="1672251817877" duration="1999000" />
+      <workItem from="1672301095904" duration="2547000" />
+      <workItem from="1672312357814" duration="7498000" />
+      <workItem from="1672326128631" duration="6575000" />
+      <workItem from="1672336381525" duration="5317000" />
+      <workItem from="1672372697899" duration="4116000" />
+      <workItem from="1672461523737" duration="1928000" />
+      <workItem from="1672493861853" duration="639000" />
+      <workItem from="1672892230413" duration="1007000" />
+      <workItem from="1672944978856" duration="99000" />
+      <workItem from="1673353920591" duration="1825000" />
+      <workItem from="1673456079879" duration="1189000" />
+      <workItem from="1673527807170" duration="613000" />
+    </task>
+    <task id="LOCAL-00001" summary="Email Changed">
+      <created>1671725143683</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1671725143683</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Kapka in progress">
+      <created>1671886305219</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1671886305219</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Email Changed" />
+    <MESSAGE value="Kapka in progress" />
+    <option name="LAST_COMMIT_MESSAGE" value="Kapka in progress" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="org.springframework.beans.factory.UnsatisfiedDependencyException" package="org.springframework.beans.factory" />
+          <option name="timeStamp" value="2" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

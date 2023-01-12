@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -42,10 +41,16 @@ public class MyController {
 	public Optional<StudentDetails> getStudent(@PathVariable String studentEmail) {
 		return this.studentService.getStudent(studentEmail);
 	}
-	
-	
 
 
+	/**
+	 *
+	 Endpoint for adding new student details.
+	 It takes in a StudentDetails object as a request body and checks if the email already exists in the database.
+	 If it exists, it returns a response with a message "Email is already in use" and a status code of NOT_ACCEPTABLE.
+	 If not, it adds the student details and returns a response with the added student details and a status code of CREATED.
+	 This endpoint throws an exception EmailAlreadyRegistered if the email is already in use.
+	 */
 	@PostMapping("/studentdetails")
 	public ResponseEntity<Object> addStudent(@RequestBody StudentDetails student) throws EmailAlreadyRegistered{
 		if (studentService.emailExists(student.getStudentEmail())) {

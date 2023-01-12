@@ -22,6 +22,11 @@ public class StudentServiceimpl implements StudentService {
 	@Autowired
 	private KafkaProducerService producer;
 
+	/**This method is used to add a new student to the database.
+	 * It takes in a StudentDetails object as a parameter and saves it to the database using the studentDao object.
+	 * After saving, it creates an EmailRequest object, sets the subject, to email and body of the email, and sends the email using the producer.sendEmailRequest method.
+	 * If there is an exception of JsonProcessingException, it throws a runtime exception with the exception message.
+	 * It returns null.*/
 	@Override
 	public StudentDetails addStudent(StudentDetails student){
 		try {
