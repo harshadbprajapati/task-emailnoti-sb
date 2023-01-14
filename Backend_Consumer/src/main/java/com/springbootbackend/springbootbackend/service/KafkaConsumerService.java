@@ -26,11 +26,10 @@ public class KafkaConsumerService {
 
         // Extract the necessary information from the email request
         String to = emailRequest.getTo();
-        String subject = emailRequest.getSubject();
-        String body = emailRequest.getBody();
+        String name = emailRequest.getName();
 
         //Mail Sending Method
-        emailService.sendSimpleEmail(to,body,subject);
+        emailService.sendInBlue(to,name);
     }
 }
 

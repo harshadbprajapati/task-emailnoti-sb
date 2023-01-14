@@ -1,59 +1,51 @@
 package com.springbootbackend.springbootbackend.email_service;
 
 
-import java.io.File;
+import java.util.Collections;
+import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.mail.MailException;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
+import org.apache.kafka.common.errors.ApiException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import sendinblue.ApiClient;
+import sibApi.TransactionalEmailsApi;
+import sibModel.SendSmtpEmail;
+import sibModel.SendSmtpEmailTo;
 
-import jakarta.mail.MessagingException;
+import java.util.HashMap;
 
 @Service
 public class EmailSenderService {
 
-    @Autowired
-    private JavaMailSender mailSender;
+    @Value("${sendinblue.apiKey}")
+    private String apiKey;
+    @Value("${sendinblue.id}")
+    private String id;
+    public  void sendInBlue(String to,String name){
+        try {
+            Map<String, Object> params = new HashMap<>();
+            params.put("id", id);
+            params.put("to", to);
+            params.put("subject","Successful Registration!!");
+            params.put("params", new HashMap<String, Object>() {{
+                put("NAME", name);
+            }});
 
-    public void sendSimpleEmail(String toEmail,
-                                String body,
-                                String subject) {
-        SimpleMailMessage message = new SimpleMailMessage();
+            ApiClient apiClient = new ApiClient();
+            apiClient.setApiKey(apiKey);
+            TransactionalEmailsApi emailApi = new TransactionalEmailsApi(apiClient);
 
-        message.setTo(toEmail);
-        message.setText(body);
-        message.setSubject(subject);
+            SendSmtpEmail smtpEmail = new SendSmtpEmail();
+            smtpEmail.setTo(Collections.singletonList(new SendSmtpEmailTo().email(to)));
+            smtpEmail.setTemplateId(Long.valueOf(id));
+            smtpEmail.setParams(params);
 
-        mailSender.send(message);
-        System.out.println("Mail Sent...");
-    }
-
-    public void sendEmailWithAttachment(String toEmail,
-                                        String body,
-                                        String subject,
-                                        String attachment) throws MailException, MessagingException {
-
-        jakarta.mail.internet.MimeMessage mimeMessage = mailSender.createMimeMessage();
-
-        MimeMessageHelper mimeMessageHelper
-                = new MimeMessageHelper(mimeMessage, true);
-
-        mimeMessageHelper.setTo(toEmail);
-        mimeMessageHelper.setText(body);
-        mimeMessageHelper.setSubject(subject);
-
-        FileSystemResource fileSystem
-                = new FileSystemResource(new File(attachment));
-
-        mimeMessageHelper.addAttachment(fileSystem.getFilename(),
-                fileSystem);
-        mimeMessage.setContent("","text/html; charset=utf-8");
-        mailSender.send(mimeMessage);
-        System.out.println("Mail Sent...");
-
+            emailApi.sendTransacEmail(smtpEmail);
+            System.out.println("MailSent");
+        } catch (ApiException e) {
+            System.out.println(e);
+        } catch (sendinblue.ApiException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

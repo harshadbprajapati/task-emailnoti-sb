@@ -32,9 +32,8 @@ public class StudentServiceimpl implements StudentService {
 		try {
 			studentDao.save(student);
 			EmailRequest email=new EmailRequest();
-			email.setSubject("Successful registration!!");
 			email.setTo(student.getStudentEmail());
-			email.setBody(student.getStudentName()+" have registered successfully!!");
+			email.setName(student.getStudentName());
 			producer.sendEmailRequest(email);
 			System.out.println("Entry successfull");
 		} catch (JsonProcessingException e) {
