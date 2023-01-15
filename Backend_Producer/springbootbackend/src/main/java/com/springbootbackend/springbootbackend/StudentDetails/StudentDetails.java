@@ -3,23 +3,25 @@ package com.springbootbackend.springbootbackend.StudentDetails;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "student_details")
+@Table(name = "student_details")        //Creates Table in database
 public class StudentDetails {
 	
 		// TODO Auto-generated method stub
+		//Primary Key Annotation
 		@Id
 		@Column(name="student_email")
 		private String studentEmail;
 
-	    public StudentDetails() {
-			super();
-			// TODO Auto-generated constructor stub
-		}
 		@Column(name="student_name")
 		private String studentName;
 	    
 	    @Column(name="student_contact_number")
 		private long studentContactNumber;
+
+		public StudentDetails() {
+			super();
+			// TODO Auto-generated constructor stub
+		}
 
 		public String getStudentName() {
 			return studentName;
@@ -51,12 +53,4 @@ public class StudentDetails {
 			this.studentContactNumber = studentContactNumber;
 			this.studentEmail = studentEmail;
 		}
-		
-		
-	
-		
-		
-		
-	
-
 }

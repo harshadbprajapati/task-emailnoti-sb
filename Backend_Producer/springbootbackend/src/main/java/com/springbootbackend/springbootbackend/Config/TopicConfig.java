@@ -19,5 +19,4 @@ public class TopicConfig {
         return TopicBuilder.name(topicName)
                 .build();
     }
-
 }

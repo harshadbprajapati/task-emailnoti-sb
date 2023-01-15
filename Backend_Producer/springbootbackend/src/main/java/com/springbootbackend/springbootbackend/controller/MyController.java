@@ -25,23 +25,6 @@ public class MyController {
 
 	@Autowired
 	private StudentService studentService;
-	
-	@GetMapping("/home")
-	public String home() {
-		return "This is home";
-	}
-	
-	@GetMapping("/studentdetails")
-	public List<StudentDetails> getAllStudentDetails() {
-		return this.studentService.getAllStudentDetails();
-		
-	}
-	
-	@GetMapping("/studentdetails/{studentEmail}")
-	public Optional<StudentDetails> getStudent(@PathVariable String studentEmail) {
-		return this.studentService.getStudent(studentEmail);
-	}
-
 
 	/**
 	 *
@@ -57,6 +40,22 @@ public class MyController {
 			return new ResponseEntity<>("Email is already in use",HttpStatus.NOT_ACCEPTABLE);
 		}
 		return new ResponseEntity<>(studentService.addStudent(student),HttpStatus.CREATED);
+	}
+	
+	@GetMapping("/home")
+	public String home() {
+		return "This is home";
+	}
+	
+	@GetMapping("/studentdetails")
+	public List<StudentDetails> getAllStudentDetails() {
+		return this.studentService.getAllStudentDetails();
+		
+	}
+	
+	@GetMapping("/studentdetails/{studentEmail}")
+	public Optional<StudentDetails> getStudent(@PathVariable String studentEmail) {
+		return this.studentService.getStudent(studentEmail);
 	}
 	
 	@PutMapping("/studentdetails")

@@ -23,6 +23,7 @@ public class EmailSenderService {
     private String id;
     public  void sendInBlue(String to,String name){
         try {
+            // Creating a map to hold the email parameters
             Map<String, Object> params = new HashMap<>();
             params.put("id", id);
             params.put("to", to);
@@ -31,6 +32,7 @@ public class EmailSenderService {
                 put("NAME", name);
             }});
 
+            // Creating an ApiClient object
             ApiClient apiClient = new ApiClient();
             apiClient.setApiKey(apiKey);
             TransactionalEmailsApi emailApi = new TransactionalEmailsApi(apiClient);

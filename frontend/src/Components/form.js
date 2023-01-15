@@ -21,6 +21,7 @@ const Displayform =()=>{
         e.preventDefault();
     }
 
+    //Post request with toastify
     const studentRegistered=(data)=>{
 const resolveWithSomeData = axios.post(`${baseurl}/studentdetails`,data);
 toast.promise(
@@ -59,8 +60,7 @@ toast.promise(
       }
     }
 )
-    }
-
+    {
         return(
             <div>
                 <div class="box-1">
@@ -96,5 +96,7 @@ toast.promise(
                 </div>
             </div>
         )
+    }
+  }
 }
-export default Displayform
+export default Displayform;
