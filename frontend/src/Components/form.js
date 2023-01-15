@@ -23,44 +23,36 @@ const Displayform =()=>{
 
     //Post request with toastify
     const studentRegistered=(data)=>{
-const resolveWithSomeData = axios.post(`${baseurl}/studentdetails`,data);
-toast.promise(
-    resolveWithSomeData,
-    {
-      pending: {
-        render(){
-          return "Please Wait!!"
-        },
-        icon: "✋",
-      },
-      success: {
-        render({data}){
-          return `Registered Successfully!!`
-        },
-        // other options
-        icon: "🚀",
-      },
-      duplicateEmail: {
-        render({data}) {
-          if (data.message === "Email is already in use") {
-            return `Error: Already registered with this email!`;
-          }
-        },
-        icon: "💔",
-      },
-      error: {
-        render({data}){
-            console.log(data);
-          // When the promise reject, data will contains the error
-          if(data.message==="Request failed with status code 500" || data.message==="Request failed with status code 406")
-            return `Email already exist!!`
-          return `Registration Failed!!`
-        },
-        icon:"💥",
-      }
+        const resolveWithSomeData = axios.post(`${baseurl}/studentdetails`,data);
+        toast.promise(
+            resolveWithSomeData,
+            {
+                pending: {
+                    render(){
+                        return "Please Wait!!"
+                    },
+                    icon: "✋",
+                },
+                success: {
+                    render({data}){
+                        return `Registered Successfully!!`
+                    },
+                    // other options
+                    icon: "🚀",
+                },
+                error: {
+                    render({data}){
+                        console.log(data);
+                        // When the promise reject, data will contains the error
+                        if(data.message==="Request failed with status code 500" || data.message==="Request failed with status code 406")
+                        return `Email already exist!!`
+                        return `Registration Failed!!`
+                    },
+                    icon:"💥",
+                }
+            }
+        )
     }
-)
-    {
         return(
             <div>
                 <div class="box-1">
@@ -96,7 +88,5 @@ toast.promise(
                 </div>
             </div>
         )
-    }
-  }
 }
 export default Displayform;
