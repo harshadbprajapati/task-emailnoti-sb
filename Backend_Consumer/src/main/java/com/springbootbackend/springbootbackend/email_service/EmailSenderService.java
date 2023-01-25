@@ -1,8 +1,7 @@
 package com.springbootbackend.springbootbackend.email_service;
 
 
-import java.util.Collections;
-import java.util.Map;
+import java.util.*;
 
 import org.apache.kafka.common.errors.ApiException;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,8 +10,6 @@ import sendinblue.ApiClient;
 import sibApi.TransactionalEmailsApi;
 import sibModel.SendSmtpEmail;
 import sibModel.SendSmtpEmailTo;
-
-import java.util.HashMap;
 
 @Service
 public class EmailSenderService {
@@ -25,12 +22,7 @@ public class EmailSenderService {
         try {
             // Creating a map to hold the email parameters
             Map<String, Object> params = new HashMap<>();
-            params.put("id", id);
-            params.put("to", to);
-            params.put("subject","Successful Registration!!");
-            params.put("params", new HashMap<String, Object>() {{
-                put("NAME", name);
-            }});
+            params.put("name", name);
 
             // Creating an ApiClient object
             ApiClient apiClient = new ApiClient();
